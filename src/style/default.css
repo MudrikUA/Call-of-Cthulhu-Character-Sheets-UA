@@ -1,0 +1,41 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.document-container {
+    position: relative;
+    width: 800px; /* Adjust to your image width */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.document-image {
+    width: 100%;
+    height: auto;
+}
+
+.input-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.input-field {
+    position: absolute;
+    pointer-events: all; /* Enable interaction with input fields */
+    background: rgba(255, 255, 255, 0); /* Semi-transparent background */
+    border: 1px solid #ccc;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.hide {
+    display:none;
+}
