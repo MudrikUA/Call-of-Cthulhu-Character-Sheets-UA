@@ -1,26 +1,33 @@
 function printDivContent() {
-    var divToPrint = document.querySelector('.' + 'document-container');
-    var newWin = window.open('', 'Print-Window');
+    // var divToPrint = document.querySelector('.' + 'document-container');
+    // var newWin = window.open('', 'Print-Window');
 
-    newWin.document.open();
-    newWin.document.write('<html><head><title>Print</title></head><body onload="window.print()">' + divToPrint.innerHTML + '</body></html>');
-    newWin.document.close();
+    // newWin.document.open();
+    // newWin.document.write('<html><head><title>Print</title></head><body onload="window.print()">' + divToPrint.innerHTML + '</body></html>');
+    // newWin.document.close();
 
-    setTimeout(function () {
-        newWin.close();
-    }, 10);
+    // setTimeout(function () {
+    //     newWin.close();
+    // }, 10);
+    document.body.style.justifyContent = 'normal';
+    document.body.style.alignItems = 'normal';
+    document.querySelector('.print-btn').style.visibility = 'hidden';
+    window.print();
+    document.body.style.justifyContent = 'center';
+    document.body.style.alignItems = 'center';
+    document.querySelector('.print-btn').style.visibility = 'visible';
 }
 
 function printDocument() {
-    var printContents = document.querySelector('.document-container').innerHTML;
-    var originalContents = document.body.innerHTML;
+    // var printContents = document.querySelector('.document-container').innerHTML;
+    // var originalContents = document.body.innerHTML;
 
-    document.body.innerHTML = printContents;
+    // document.body.innerHTML = printContents;
 
-    window.print();
+    // window.print();
 
-    document.body.innerHTML = originalContents;
-    window.location.reload(); // Reload the page to restore original content
+    // document.body.innerHTML = originalContents;
+    // window.location.reload(); // Reload the page to restore original content
 }
 
 
@@ -261,13 +268,12 @@ function addCalcStat(type, targetElement, targetElementStyles, div, pos) {
         document.querySelector('.insane').value = +targetElementValue - +newElement.value;
     }
 
-    // if (div === 2 && targetElement.dataset.id === '3') {
-    //     document.querySelectorAll('.agila-normal').forEach(function(el) {el.value = targetElementValue});
-    //     document.querySelectorAll('.agila-super').forEach(function(el) {el.value = newElement.value});
-    // } else if (div === 5 && targetElement.dataset.id === '3') {
-    //     document.querySelectorAll('.agila-extrime').forEach(function(el) {el.value = newElement.value});
-        
-    // }
+    if (div === 2 && targetElement.dataset.id === '3') {
+        document.querySelectorAll('.agila-normal').forEach(function (el) { el.value = targetElementValue / 5 });
+        document.querySelectorAll('.agila-super').forEach(function (el) { el.value = newElement.value / 5 });
+    } else if (div === 5 && targetElement.dataset.id === '3') {
+        document.querySelectorAll('.agila-extrime').forEach(function (el) { el.value = newElement.value / 5 });
+    }
 }
 
 function fillBonusDmgAndBuild(stat1, stat2) {
@@ -307,10 +313,10 @@ function fillMovement(str, dex, siz) {
     var movement = 0;
     if (+str < +siz && +dex < +siz) {
         movement = 7;
-    } else if (+str >= +siz || +dex >= +siz || +dex === +siz === +str) {
-        movement = 8;
     } else if (+str > +siz && +dex > +siz) {
         movement = 9;
+    } else {
+        movement = 8;
     }
 
     movement = ageSpeedDebuff(movement);
@@ -321,15 +327,15 @@ function ageSpeedDebuff(movement) {
     var age = document.querySelector('.age').value
     if (age && !isNaN(age)) {
         age = +age;
-        if (40 >= age && age <= 49) {
+        if (40 <= age && age <= 49) {
             movement -= 1;
-        } else if (50 >= age && age <= 59) {
+        } else if (50 <= age && age <= 59) {
             movement -= 2;
-        } else if (60 >= age && age <= 69) {
+        } else if (60 <= age && age <= 69) {
             movement -= 3;
-        } else if (70 >= age && age <= 79) {
+        } else if (70 <= age && age <= 79) {
             movement -= 4;
-        } else if (80 >= age && age <= 89) {
+        } else if (80 <= age) {
             movement -= 5;
         }
     }
